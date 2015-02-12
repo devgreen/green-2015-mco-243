@@ -16,6 +16,7 @@ public class Microprocessor {
 		for (int k = 0; k < info.length; k++) {
 			info[k] = String.valueOf(input.charAt(k));
 		}
+
 		int i = 0;
 		int instruction;
 
@@ -23,7 +24,7 @@ public class Microprocessor {
 
 		do {
 
-			instruction = Integer.parseInt(info[i], 16);
+			instruction = Integer.parseInt(info[i]);
 
 			switch (instruction) {
 
@@ -32,6 +33,7 @@ public class Microprocessor {
 				builder.append(info[i + 1]);
 				builder.append(info[i + 2]);
 				String loc = builder.toString();
+
 				int a = Integer.parseInt(loc, 16);
 				accuA = info[a].toUpperCase();
 				i = i + 3;
@@ -58,14 +60,15 @@ public class Microprocessor {
 				break;
 			case 3:
 				int valueA = Integer.parseInt(accuA, 16);
-				int fromB = Integer.parseInt(accuB, 16);
-				int total = valueA + fromB;
+				int valueB = Integer.parseInt(accuB, 16);
+				int total = valueA + valueB;
 				String hex = Integer.toHexString(total);
 				if (hex.length() == 2) {
 					accuA = String.valueOf(hex.charAt(1)).toUpperCase();
 					accuB = String.valueOf(hex.charAt(0)).toUpperCase();
 				} else {
 					accuA = hex.toUpperCase();
+					accuB = "0";
 				}
 				i++;
 				break;
@@ -103,7 +106,6 @@ public class Microprocessor {
 					a = Integer.parseInt(loc, 16);
 					i = a;
 					builder.setLength(0);
-					i = i + 3;
 
 				}
 
