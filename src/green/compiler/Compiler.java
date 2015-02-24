@@ -5,94 +5,128 @@ import java.util.Scanner;
 
 public class Compiler {
 
-	public static void main (String [] args){
-		
-		Scanner scanner = new Scanner (System.in);
-		StringBuilder output = new StringBuilder();
-		int [] ready = new int[256];
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+		// StringBuilder output = new StringBuilder();
+		int[] ready = new int[256];
 		int counter = 0;
-		
-		
+		int i = 0;
+
 		ArrayList<String> input = new ArrayList<String>();
-		
-		for (int i =0; i< 10; i++){
+
+		while (scanner.hasNextLine()) {
 			String next = scanner.nextLine();
 			input.add(next);
 		}
 		String nextLine;
-		do{
-			nextLine = input.get(counter);	
-			String [] info = nextLine.split(" ");
-			input.remove(counter);
-			for (int i =0; i< info.length; i++){
-				
+		do {
+			nextLine = input.get(i);
+			String[] info = nextLine.split(" ");
+			input.remove(i);
+
+			switch (/* nextLine */info[0]) {
+
+			case "LD":// need to add
+				ready[counter] = 0;
+				counter++;
+				String next = info[1];
+				String hex = Integer.toHexString(Integer.parseInt(next));
+				for (int j = 0; j < hex.length(); j++) {
+					ready[counter] = hex.charAt(j);
+					counter++;
+				}
+				// output.append(0);
+				// output.append(Integer.toHexString(Integer.parseInt(info[1])));
+
+				break;
+
+			case "ST":// need to add
+				ready[counter] = 1;
+				counter++;
+
+				next = info[1];
+				hex = Integer.toHexString(Integer.parseInt(next));
+				for (int k = 0; k < hex.length(); k++) {
+					ready[counter] = hex.charAt(k);
+					counter++;
+				}
+				// output.append(1);
+				// output.append(Integer.toHexString(Integer.parseInt(info[1])));
+				break;
+
+			case "SWP":
+				ready[counter] = 2;
+				counter++;
+				// output.append(2);
+				break;
+
+			case "ADD":
+				ready[counter] = 3;
+				counter++;
+				// output.append(3);
+				break;
+
+			case "INC":
+				ready[counter] = 4;
+				counter++;
+				// output.append(4);
+				break;
+			case "DEC":
+				ready[counter] = 5;
+				counter++;
+				// output.append(5);
+				break;
+
+			case "BZ":// need to add
+				ready[counter] = 6;
+				counter++;
+
+				next = info[1];
+				hex = Integer.toHexString(Integer.parseInt(next));
+				for (int l = 0; l < hex.length(); l++) {
+					ready[counter] = hex.charAt(l);
+					counter++;
+				}
+				// output.append(6);
+				// output.append(Integer.toHexString(Integer.parseInt(info[1])));
+				break;
+			case "BR":// need to add
+				ready[counter] = 7;
+				counter++;
+				next = info[1];
+				hex = Integer.toHexString(Integer.parseInt(next));
+				for (int m = 0; m < hex.length(); m++) {
+					ready[counter] = hex.charAt(m);
+					counter++;
+				}
+
+				// output.append(7);
+				// output.append(Integer.toHexString(Integer.parseInt(info[1])));
+				break;
+
+			case "STP":
+				ready[counter] = 8;
+				counter++;
+				// output.append(8);
+				break;
+			case "DATA":
+				int loc = Integer.parseInt(info[0]);
+				next = info[1];
+				String data = Integer.toHexString(Integer.parseInt(next));
+				ready[loc] = data.charAt(0);
+				// output.
+				break;
+
+			case "//":
+				i++;
+				break;
 			}
-			
-			
-			
-		switch(/*nextLine*/ info[0]){
-		
-		
-		case "LD"://need to add
-			ready[counter] = 0;
-			counter++;
-			output.append(0);
-			output.append(Integer.toHexString(Integer.parseInt(info[1])));
-			
-			break;
-			
-		case "ST"://need to add
-			ready[counter] = 1;
-			counter++;
-			output.append(1);
-			output.append(Integer.toHexString(Integer.parseInt(info[1])));
-			break;
-			
-		case "SWP":
-			ready[counter] = 2;
-			counter++;
-			output.append(2);
-			break;
-			
-		case "ADD":
-			ready[counter] = 3;
-			counter++;
-			output.append(3);
-			break;
-			
-		case "INC":
-			ready[counter] = 4;
-			counter++;
-			output.append(4);
-			break;
-		case "DEC":
-			ready[counter] = 5;
-			counter++;
-			output.append(5);
-			break;
-			
-		case "BZ"://need to add
-			ready[counter] = 6;
-			counter++;
-			output.append(6);
-			output.append(Integer.toHexString(Integer.parseInt(info[1])));
-			break;
-		case "BR"://need to add
-			ready[counter] = 7;
-			counter++;
-			output.append(7);
-			output.append(Integer.toHexString(Integer.parseInt(info[1])));
-			break;
-			
-		case "STP":
-			ready[counter] = 8;
-			counter++;
-			output.append(8);
-			break;
-		case "DATA":
-			output.
-			break;
+		} while (!input.isEmpty());
+
+		for (int n = 0; n < ready.length; n++) {
+			System.out.print(ready[n]);
+
 		}
-	}while (!input.isEmpty());
-		}
+	}
 }
