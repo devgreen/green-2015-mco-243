@@ -21,9 +21,9 @@ public class Compiler {
 		String nextA = "";
 		while (scanner.hasNextLine()) {
 			nextA = scanner.nextLine();
-			if (nextA.equals("z")) {
-				break;
-			}
+			/*
+			 * if (nextA.equals("z")) { break; }
+			 */
 			input.add(nextA);
 		}
 		String nextLine;
