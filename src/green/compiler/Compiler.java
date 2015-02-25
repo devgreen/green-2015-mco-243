@@ -14,16 +14,19 @@ public class Compiler {
 		int i = 0;
 
 		ArrayList<String> input = new ArrayList<String>();
-
+		String nextA = "";
 		while (scanner.hasNextLine()) {
-			String next = scanner.nextLine();
-			input.add(next);
+			nextA = scanner.nextLine();
+			if (nextA.equals("z")) {
+				break;
+			}
+			input.add(nextA);
 		}
 		String nextLine;
 		do {
-			nextLine = input.get(i);
+			nextLine = input.get(0);
 			String[] info = nextLine.split(" ");
-			input.remove(i);
+			input.remove(0);
 
 			switch (/* nextLine */info[0]) {
 
@@ -118,9 +121,9 @@ public class Compiler {
 				// output.
 				break;
 
-			case "//":
-				i++;
-				break;
+			// case "//":
+			// i++;
+			// break;
 			}
 		} while (!input.isEmpty());
 
