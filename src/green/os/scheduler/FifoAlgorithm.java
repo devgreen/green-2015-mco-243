@@ -6,10 +6,8 @@ public class FifoAlgorithm implements SchedulerAlgorithm {
 
 	@Override
 	public FakeProcesses getNextProcess(List<FakeProcesses> list) {
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-		return null;
+		return list.get(0);
+
 	}
 
 }

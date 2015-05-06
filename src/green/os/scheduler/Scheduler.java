@@ -2,6 +2,7 @@ package green.os.scheduler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Scheduler{
 
@@ -16,25 +17,27 @@ public class Scheduler{
 	}
 
 	public void run() throws InterruptedException {
-		long startTime = System.currentTimeMillis();
-		while ((System.currentTimeMillis()-startTime)< 10000) {
+		
+		while (!list.isEmpty()) {
 			FakeProcesses process = algorithm.getNextProcess(list);
-			if (process == null){
+			/*if (process == null){
 				break;
-			}
+			}*/
 			list.remove(process);
 			process.run(QUANTAM);
 			if (process.isStillRunning()) {
 				list.add(process);
 				process.setLastProcessed(System.currentTimeMillis());
-				System.out.println ("put back on the list");
+				//System.out.println ("put back on the list");
 			}
 		}
 	}
 
 	public void populateList(){
+		Random random = new Random ();
 		for (int i =0; i< 100; i++){
-			FakeProcesses f = new FakeProcesses (i, i*1000 + 5, 0);
+			int runtime = random.nextInt(25) + 5;
+			FakeProcesses f = new FakeProcesses (i, runtime *10, 0);
 			list.add(f);
 			
 		}

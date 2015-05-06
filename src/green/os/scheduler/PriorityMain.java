@@ -2,16 +2,15 @@ package green.os.scheduler;
 
 import java.util.List;
 
-public class FifoMain {
-	
-	
-	public static void main (String [] args){
-		
+public class PriorityMain {
+
+	public static void main(String[] args) {
 		long startTime = 0;
-		FifoAlgorithm fifo = new FifoAlgorithm();
-		Scheduler s = new Scheduler(fifo);
+		PriorityAlgorithm p = new PriorityAlgorithm();
+		Scheduler s = new Scheduler(p);
 		s.populateList();
 		try {
+			startTime = System.currentTimeMillis();
 			s.run();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -20,7 +19,7 @@ public class FifoMain {
 		long time = endTime - startTime;
 		System.out.println("done " + time);
 	/*	List<FakeProcesses> list = s.getList();
-		System.out.println (list.size());*/
+		System.out.println(list.size());*/
 	}
 
 }

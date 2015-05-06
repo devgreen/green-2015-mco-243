@@ -6,13 +6,13 @@ public class PriorityAlgorithm implements SchedulerAlgorithm{
 
 	@Override
 	public FakeProcesses getNextProcess(List<FakeProcesses> list) {
-		FakeProcesses priority = null;
+	/*	FakeProcesses priority = null;
 		if (list.isEmpty()){
 			System.out.println ("all processes have completes");
 			
 		}
-		else {
-		priority = list.get(0);
+		else {*/
+		FakeProcesses priority = list.get(0);
 		for (FakeProcesses p : list) {
 			if (System.currentTimeMillis() - p.getLastProcessed() > 100){
 				p.setPriority(0);
@@ -22,7 +22,7 @@ public class PriorityAlgorithm implements SchedulerAlgorithm{
 				priority = p;
 			}
 		}
-		}
+		
 		return priority;
 	}
 
