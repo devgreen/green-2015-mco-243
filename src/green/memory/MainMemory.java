@@ -25,6 +25,7 @@ public class MainMemory {
 			}
 
 		}
+		free(processID);
 
 		return false;
 
@@ -60,13 +61,29 @@ public class MainMemory {
 
 	public static void main(String[] args) {
 		MainMemory memory = new MainMemory(640);
-		memory.allocate(1, 100);
-		memory.allocate(2, 50);
-		memory.allocate(3, 256);
-		memory.allocate(1, 50);
+		boolean allocate = memory.allocate(1, 100);
+		if (!allocate){
+			System.out.println ("not enough memory available");
+		}
+		allocate = memory.allocate(2, 50);
+		if (!allocate){
+			System.out.println ("not enough memory available");
+		}
+		allocate = memory.allocate(3, 256);
+		if (!allocate){
+			System.out.println ("not enough memory available");
+		}
+		allocate =	memory.allocate(1, 50);
+		if (!allocate){
+			System.out.println ("not enough memory available");
+		}
+		memory.print();
 		memory.free(1);
 		memory.print();
-		memory.allocate(4, 256);
+		allocate = memory.allocate(4, 256);
+		if (!allocate){
+			System.out.println ("not enough memory available");
+		}
 		memory.print();
 	}
 
