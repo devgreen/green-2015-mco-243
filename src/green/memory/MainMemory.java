@@ -44,47 +44,49 @@ public class MainMemory {
 
 	}
 
-	public void print() {
+	public String print() {
+		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < memory.length; i++) {
 			for (int j = 0; j < memory[i].length; j++) {
 				if (memory[i][j] != 0) {
-					System.out.print(memory[i][j]);
+					builder.append(memory[i][j]);
 				} else {
-					System.out.print("-");
+					builder.append("-");
 				}
 			}
-			System.out.println();
+			builder.append("\n");
 
 		}
+		return builder.toString();
 
 	}
 
 	public static void main(String[] args) {
 		MainMemory memory = new MainMemory(640);
 		boolean allocate = memory.allocate(1, 100);
-		if (!allocate){
-			System.out.println ("not enough memory available");
+		if (!allocate) {
+			System.out.println("not enough memory available");
 		}
 		allocate = memory.allocate(2, 50);
-		if (!allocate){
-			System.out.println ("not enough memory available");
+		if (!allocate) {
+			System.out.println("not enough memory available");
 		}
 		allocate = memory.allocate(3, 256);
-		if (!allocate){
-			System.out.println ("not enough memory available");
+		if (!allocate) {
+			System.out.println("not enough memory available");
 		}
-		allocate =	memory.allocate(1, 50);
-		if (!allocate){
-			System.out.println ("not enough memory available");
+		allocate = memory.allocate(1, 50);
+		if (!allocate) {
+			System.out.println("not enough memory available");
 		}
-		memory.print();
+		System.out.print(memory.print());
 		memory.free(1);
-		memory.print();
+		System.out.print(memory.print());
 		allocate = memory.allocate(4, 256);
-		if (!allocate){
-			System.out.println ("not enough memory available");
+		if (!allocate) {
+			System.out.println("not enough memory available");
 		}
-		memory.print();
+		System.out.print(memory.print());
 	}
 
 }
